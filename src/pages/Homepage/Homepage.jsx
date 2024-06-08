@@ -1,7 +1,5 @@
-import NavBar from '../components/ui/NavBar/NavBar'
-import Footer from '../components/ui/Footer/Footer'
-import OurTeamCard from '../components/ui/OurTeamCard/OurTeamCard';
-import HomePageCarousel from '../components/ui/HomePageCarousel/HomePageCarousel';
+import OurTeamCard from '../../components/ui/OurTeamCard/OurTeamCard';
+import HomePageCarousel from '../../components/ui/HomePageCarousel/HomePageCarousel';
 import { Stack } from '@mui/material'
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -18,10 +16,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-export function Homepage() {
+export default function Homepage() {
     return (
         <>
-        <NavBar />
         <HomePageCarousel />
         <Stack spacing={10} sx={{ pt: 10 }}>
             <Item>
@@ -62,7 +59,6 @@ export function Homepage() {
                 </Typography>
             </Item>
         </Stack>
-        <Footer />
         </>
     )
 }
