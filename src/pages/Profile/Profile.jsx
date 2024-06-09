@@ -59,7 +59,7 @@ export default function Profile() {
                     Analysis
                 </Box>
             </Typography>
-            {chartState ? <ConditionalChartRender data={data} /> : <></>}
+            {chartState ? <ConditionalChartRender data={data} /> : null}
         </Stack>
     )
 }

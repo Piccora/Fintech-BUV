@@ -12,6 +12,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../firebase';
 import { signingOut } from '../../../FirebaseAuthentication';
 import { useNavigate } from 'react-router-dom';
+import { Logo } from '../../../assets'
 
 export default function NavBar() {
   const [session, setSession] = useState(false);
@@ -21,7 +22,7 @@ export default function NavBar() {
   })
 
   const handleClick = () => {
-    signingOut().then( () => {
+    signingOut().then(() => {
       window.location.reload()
       navigate("/")
     }
@@ -32,8 +33,11 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Link href="/" underline="none" color="primary">Logo</Link>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <a href="/homepage"><img src={Logo} width={100} height={100} /></a>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 7 }}>
+          <Button href="/profile" variant="text" sx={{ color: 'white' }}>
+            Profile
+            </Button>
           </Typography>
           {session ? (<Button variant="text" sx={{ color: 'white' }} onClick={handleClick} >{auth.currentUser.displayName}</Button>) : (<Button color="inherit" href="/sign-in">Login</Button>)}
         </Toolbar>
