@@ -48,9 +48,10 @@ export default function SignUp() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            pt: 5
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#000000' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">

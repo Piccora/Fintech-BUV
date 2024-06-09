@@ -42,16 +42,16 @@ export default function Profile() {
         chartState ?
         (<Stack sx={{ width: '100%', maxWidth: 'false', pt: 10 }} spacing={8}>
             <Typography component="div" variant="h3">
-                <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
+                <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1, pt: 6}}>
                     Profile
                 </Box>
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: 'flex-start' }} >
+            <Box sx={{ display: "flex", justifyContent: 'flex-start',pt: -5, pb: 10}} >
                 <Box align="left" sx={{ px: 10, pr: 50, textAlign: 10}}>
-                    <Typography variant="h5">Username: </Typography>
-                    <Typography variant="h5">Specialized field:      </Typography>
-                    <Typography variant="h5">Total revenue:</Typography>
-                    <Typography variant="h5">Total profit:</Typography>
+                    <Typography variant="h5" sx={{pb: 1.5, pt: 2}}>Username: </Typography>
+                    <Typography variant="h5" sx={{pb: 1.5, pt: 2}}>Specialized Field:      </Typography>
+                    <Typography variant="h5" sx={{pb: 1.5, pt: 2}}>Total Revenue:</Typography>
+                    <Typography variant="h5" sx={{pb: 1.5, pt: 2}}>Total Profit:</Typography>
                 </Box>
                 <ProfileInputButton />
                 <Box />

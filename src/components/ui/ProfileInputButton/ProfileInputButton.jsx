@@ -75,6 +75,7 @@ export default function ProfileInputButton() {
         disableElevation
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
+        sx={{ ml: 80}}
       >
         Options
       </Button>
