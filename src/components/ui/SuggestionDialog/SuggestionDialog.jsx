@@ -45,6 +45,30 @@ export default function SuggestionDialog(props) {
       avc: avc
     })
 
+    const report = () => {
+      const profit_to_rev = (resultData.profit / resultData)
+      if (resultData.profit > resultData.atc) {
+        console.log("The business...")
+      } else if (resultData.profit = resultData.atc) {
+        console.log("The business...")
+      } else if (resultData.avc < resultData.profit < resultData.atc) {
+        console.log("dwdjzc")
+      } else if (resultData.profit < resultData.avc) {
+        console.log("The business...")
+      }
+
+      if (resultData.growth > x%) {
+        console.log("...")
+      } else if (resultData.growth = x%) {
+        console.log("...")
+      } else {
+        console.log("...")
+      }
+      
+    }
+
+    }
+
   }
 
   return (
