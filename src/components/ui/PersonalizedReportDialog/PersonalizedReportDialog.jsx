@@ -11,6 +11,7 @@ import { Typography, Box } from '@mui/material';
 export default function PersonalizedReportDialog(resultData) {
   const [open, setOpen] = React.useState(false);
   const [overallFinance, setOverallFinance] = React.useState("")
+  const [profitToRev, setProfitToRev] = React.useState("")
 
   const handleClickOpen = () => {
     report();
@@ -22,8 +23,6 @@ export default function PersonalizedReportDialog(resultData) {
   };
 
   const report = () => {
-    console.log(resultData.data.price, resultData.data.atc)
-    // const profit_to_rev = (resultData.profit / resultData)
     let overallFinancialSituation = ""
     if (resultData.data.price > resultData.data.atc) {
       overallFinancialSituation += "We recognized your Price is higher than the Average Total Cost (ATC). This indicates that the price your business charges for each product exceeds the average cost for each output, which means your business is making a profit. However, please be careful if the price is far higher than the ATC as it would make your products less attractive than competitors.\n"
@@ -37,13 +36,15 @@ export default function PersonalizedReportDialog(resultData) {
 
     setOverallFinance(overallFinancialSituation)
 
-    // if (resultData.growth > x%) {
-    //   console.log("...")
-    // } else if (resultData.growth = x%) {
-    //   console.log("...")
-    // } else {
-    //   console.log("...")
-    // }
+    let costRev = ""
+
+    if (((resultData.data.profit / resultData.data.revenue) * 100) >= 15) {
+      costRev += "It seems that your Average Profit Margin is higher than the Average Profit Margin compared to the overall market. Here are some questions and recommendations to evaluate and improve the financial situation."
+    } else {
+      costRev += "It seems that your Average Profit Margin is lower than the Average Profit Margin compared to the overall market. Here are some questions and recommendations to evaluate and improve the financial situation.\n\nWhat are some risks of production that you might face? Do you have any ways to safeguard products?\nHere are some risks that farmers might face:\nClimate and Weather\nPests and Diseases\nHere are some recommendations that you could consider:\nClimate and Weather risks: Drought, flood\nPest and Diseases: Biological control, crop rotation"
+    }
+
+    setProfitToRev(costRev)
     
   }
   
@@ -86,19 +87,8 @@ export default function PersonalizedReportDialog(resultData) {
               2. Profit to revenue and cost to revenue ratio
             </Box>
           </Typography>
-          <Typography sx={{ mb: 3 }}></Typography>
+          <Typography sx={{ mb: 3 }}>{profitToRev}</Typography>
           </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="name"
-            name="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

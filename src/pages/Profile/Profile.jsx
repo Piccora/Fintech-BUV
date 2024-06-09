@@ -6,14 +6,19 @@ import ProfileInputButton from "../../components/ui/ProfileInputButton/ProfileIn
 import { ConditionalChartRender } from "../../components/ui/ConditionalChartRender/ConditionalChartRender"
 import { simpleQuery } from "../../FirebaseFirestore"
 import { auth } from "../../firebase"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Profile() {
     const [chartState, setChartState] = useState(false)
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+    }, [items]);
 
     let data = {
         chartType: "ComboChart",
-        data: [],
+        data: [["Year", "Profit", "Revenue", "Cost"]],
         options: {
             title: "Profit over years",
             vAxis: { title: "Profit (VND)" },
@@ -26,19 +31,16 @@ export default function Profile() {
     simpleQuery("finance-data-year", ["userName", "==", auth.currentUser.displayName], "year").then(
         function (result) {
             if (result.length >= 2) {
-                let chartData = [
-                    ["Year", "Profit", "Revenue", "Cost"],    
-                ]
-                result.forEach((doc) => {chartData.push([doc[1].year, doc[1].profit, doc[1].revenue, doc[1].cost])})
-                data.data = chartData
-                
+                result.forEach((doc) => {data.data.push([doc[1].year, doc[1].profit, doc[1].revenue, doc[1].cost])})
+                setItems(data)
                 setChartState(true)
             }
         }
     )
 
     return (
-        <Stack sx={{ width: '100%', maxWidth: 'false', pt: 10 }} spacing={8}>
+        chartState ?
+        (<Stack sx={{ width: '100%', maxWidth: 'false', pt: 10 }} spacing={8}>
             <Typography component="div" variant="h3">
                 <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
                     Profile
@@ -59,7 +61,10 @@ export default function Profile() {
                     Analysis
                 </Box>
             </Typography>
-            {chartState ? <ConditionalChartRender data={data} /> : null}
-        </Stack>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            {chartState && <ConditionalChartRender data={JSON.parse(localStorage.getItem('items'))} />}
+        
+            </Box>
+            </Stack>) : (null)
     )
 }
