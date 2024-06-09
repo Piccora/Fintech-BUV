@@ -153,7 +153,7 @@ export default function InputStatisticsFormDialog() {
             <Box>
             <Typography>
                 <Box sx={{fontWeight: 'bold'}}>
-                    Fixed cost
+                    Total Fixed cost
                 </Box>
             </Typography>
             <Typography>
@@ -178,7 +178,7 @@ export default function InputStatisticsFormDialog() {
             <Box>
             <Typography>
                 <Box sx={{fontWeight: 'bold'}}>
-                    Variable cost
+                    Total Variable cost
                 </Box>
             </Typography>
             <Typography>

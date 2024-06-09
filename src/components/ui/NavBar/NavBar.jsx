@@ -33,9 +33,9 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <a href="/homepage"><img src={Logo} width={100} height={100} /></a>
+          <a href="/homepage"><img src={Logo} width={150} height={100} /></a>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml: 7 }}>
-          <Button href="/profile" variant="text" sx={{ color: 'white' }}>
+          <Button href="/profile" variant="text" sx={{ color: 'white', fontSize: "1.5rem" }}>
             Profile
             </Button>
           </Typography>

@@ -84,15 +84,14 @@ export default function PersonalizedReportDialog(resultData) {
           <Typography sx={{ mb: 3 }}>{overallFinance}</Typography>
           <Typography variant="h5" sx={{ mb: 3 }}>
             <Box sx={{ fontWeight: 'bold' }}>
-              2. Profit to revenue and cost to revenue ratio
+              2. Profit to revenue
             </Box>
           </Typography>
           <Typography sx={{ mb: 3 }}>{profitToRev}</Typography>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          <Button type="submit">Ok</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

@@ -22,7 +22,7 @@ export default function Profile() {
         options: {
             title: "Profit over years",
             vAxis: { title: "Profit (VND)" },
-            hAxis: { title: "Month" },
+            hAxis: { title: "Year" },
             seriesType: "bars",
             series: { 2: { type: "line" } },
         }
@@ -39,8 +39,7 @@ export default function Profile() {
     )
 
     return (
-        chartState ?
-        (<Stack sx={{ width: '100%', maxWidth: 'false', pt: 10 }} spacing={8}>
+        <Stack sx={{ width: '100%', maxWidth: 'false', pt: 10 }} spacing={8}>
             <Typography component="div" variant="h3">
                 <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1, pt: 6}}>
                     Profile
@@ -65,6 +64,6 @@ export default function Profile() {
             {chartState && <ConditionalChartRender data={JSON.parse(localStorage.getItem('items'))} />}
         
             </Box>
-            </Stack>) : (null)
+            </Stack>
     )
 }

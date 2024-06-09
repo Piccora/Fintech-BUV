@@ -130,7 +130,7 @@ return (
           <DialogContentText sx={{ mr: 15 }}>
             Break even point (in unit):
           </DialogContentText>
-          <Typography>{Math.round(resultData.breakEvenUnit)} VND</Typography>
+          <Typography>{Math.round(resultData.breakEvenUnit)}</Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
           <DialogContentText sx={{ mr: 15 }}>
