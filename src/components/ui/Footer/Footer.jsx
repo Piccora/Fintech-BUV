@@ -16,6 +16,7 @@ export default function Footer() {
           display: 'flex',
           flexDirection: 'column',
           minHeight: '20vh',
+          textAlign: 'center',
         }}
       >
         <CssBaseline />
@@ -33,7 +34,7 @@ export default function Footer() {
         >
           <Container maxWidth="sm">
             <Typography variant="body1">
-              My sticky footer can be found here.
+              Contact us: cashmate.firstclass@gmail.com
             </Typography>
           </Container>
         </Box>
