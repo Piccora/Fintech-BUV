@@ -20,7 +20,7 @@ export default function Homepage() {
     return (
         <>
         <HomePageCarousel />
-        <Stack spacing={10} sx={{ pt: 10 }} className='header'>
+        <Stack spacing={10} sx={{ pt: 10 }}>
             <Item>
                 <Typography component="div">
                     <Box className="body1">
@@ -42,7 +42,7 @@ export default function Homepage() {
                     <Box className="body3">
                         <Typography sx={{ fontWeight: 'bold', m: 1 }} variant="h3">Our team</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                        <OurTeamCard className='member1' />
+                        <OurTeamCard className='member1'/>
                         <OurTeamCard className='member2'/>
                         <OurTeamCard className='member3'/>
                         <OurTeamCard className='member4'/>
