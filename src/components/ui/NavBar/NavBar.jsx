@@ -10,19 +10,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../firebase';
+import { signingOut } from '../../../FirebaseAuthentication';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
   const [session, setSession] = useState(false);
-  let currentUserName = "";
+  const navigate = useNavigate();
   onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      currentUserName = auth.currentUser.displayName;
-      setSession(true)
-    } else {
-      currentUserName = ""
-      setSession(false)
-    }
+    user ? setSession(true) : setSession(false)
   })
+
+  const handleClick = () => {
+    signingOut().then( () => {
+      window.location.reload()
+      navigate("/")
+    }
+    )
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -31,7 +35,7 @@ export default function NavBar() {
           <Link href="/" underline="none" color="primary">Logo</Link>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           </Typography>
-          {session ? (<Typography>{currentUserName}</Typography>) : (<Button color="inherit" href="/sign-in">Login</Button>)}
+          {session ? (<Button variant="text" sx={{ color: 'white' }} onClick={handleClick} >{auth.currentUser.displayName}</Button>) : (<Button color="inherit" href="/sign-in">Login</Button>)}
         </Toolbar>
       </AppBar>
     </Box>

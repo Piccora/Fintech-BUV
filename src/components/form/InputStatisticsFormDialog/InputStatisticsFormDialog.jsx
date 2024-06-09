@@ -7,10 +7,17 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography, Box, Select, MenuItem, OutlinedInput, InputAdornment } from '@mui/material';
+import SuggestionDialog from '../../ui/SuggestionDialog/SuggestionDialog';
 
 export default function InputStatisticsFormDialog() {
   const [open, setOpen] = React.useState(false);
   const [timePeriod, settimePeriod] = React.useState('By month');
+  const [data, setData] = React.useState({
+    fixedCost: 0,
+    variableCost: 0,
+    price: 0,
+    unitSold: 0
+  })
 
   const handleChangeTimePeriod = (event) => {
     settimePeriod(event.target.value);
@@ -23,6 +30,34 @@ export default function InputStatisticsFormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const changeFixedCost = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      fixedCost: Number(e.target.value),
+    }))
+  }
+
+  const changeVariableCost = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      variableCost: Number(e.target.value),
+    }))
+  }
+
+  const changePrice = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      price: Number(e.target.value),
+    }))
+  }
+
+  const changeUnitSold = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      unitSold: Number(e.target.value),
+    }))
+  }
 
   return (
     <React.Fragment>
@@ -38,7 +73,8 @@ export default function InputStatisticsFormDialog() {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
+            // const email = formJson.email;
+            console.log(formJson)
             handleClose();
           },
         }}
@@ -111,7 +147,8 @@ export default function InputStatisticsFormDialog() {
             </Box>
           </DialogContentText>
           <OutlinedInput
-            id="outlined-adornment-weight"
+            id="fixedCost"
+            onChange={changeFixedCost}
             endAdornment={<InputAdornment position="end">VND</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -137,7 +174,8 @@ export default function InputStatisticsFormDialog() {
             </Box>
           </DialogContentText>
           <OutlinedInput
-            id="outlined-adornment-weight"
+            id="variableCost"
+            onChange={changeVariableCost}
             endAdornment={<InputAdornment position="end">VND</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -145,19 +183,40 @@ export default function InputStatisticsFormDialog() {
             }}
             sx={{ mb: 3 }}
           />
-          {/* <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="fixedCosts"
-            name="fixedCosts"
-            fullWidth
-            variant="standard"
-          /> */}
+            <Box sx={{ display: 'flex', justifyContent:'flex-start', mb: 3 }}>
+            <Typography>
+                <Box sx={{fontWeight: 'bold', mr: 3 }}>
+                    Price per unit:
+                </Box>
+            </Typography>
+            <TextField
+              id="price"
+              onChange={changePrice}
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent:'flex-start', mb: 3 }}>
+            <Typography>
+                <Box sx={{fontWeight: 'bold', mr: 5 }}>
+                    Unit sold:
+                </Box>
+            </Typography>
+            <TextField
+              id="unitSold"
+              onChange={changeUnitSold}
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          <Button><SuggestionDialog inputData={data} /></Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
