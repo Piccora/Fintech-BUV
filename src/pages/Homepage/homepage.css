@@ -4,6 +4,8 @@
 
 .body1 {
     background-color: #75975e;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .body2 {
@@ -20,7 +22,7 @@
 
 .member1 {
     background-color: #4e6043;
-    color: black
+    color: white
 }
 
 .member2 {
@@ -35,5 +37,5 @@
 
 .member4 {
     background-color: #182d0c;
-    color: black
+    color: white
 }
