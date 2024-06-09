@@ -30,6 +30,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/" element={session ? <Navigate to="/profile" replace /> : <Navigate to="/homepage" replace />} />
+          <Route path="" element={session ? <Navigate to="/profile" replace /> : <Navigate to="/homepage" replace />} />
           <Route
             path="*"
             element={
