@@ -20,7 +20,7 @@ export default function Homepage() {
     return (
         <>
         <HomePageCarousel />
-        <Stack spacing={10} sx={{ pt: 10 }}>
+        <Stack spacing={5} sx={{ pt: 10 }}>
             <Item>
                 <Typography component="div">
                     <Box className="body1">
