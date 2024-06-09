@@ -7,11 +7,20 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Typography, Box } from '@mui/material';
+import Chart from 'react-google-charts';
+
+const options = {
+  title: "",
+  pieHole: 0.4,
+  is3D: false
+}
 
 export default function SuggestionDialog(props) {
   const [open, setOpen] = React.useState(false);
   const [resultData, setResultData] = React.useState({
     revenue: 1,
+    cost: 1,
+    variableCost: 1,
     breakEvenUnit: 1,
     breakEvenRevenue: 1,
     profit: 1,
@@ -38,6 +47,8 @@ export default function SuggestionDialog(props) {
     const atc = cost / Number(data.unitSold)
     setResultData({
       revenue: revenue,
+      cost: cost,
+      variableCost: Number(data.variableCost),
       breakEvenUnit: breakEvenUnit,
       breakEvenRevenue: breakEvenRevenue,
       profit: profit,
@@ -68,62 +79,78 @@ export default function SuggestionDialog(props) {
         }}
       >
         <DialogTitle><Typography variant="h4" sx={{ mb: 3 }}>
-                <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
-                    Suggestion
-                </Box>
-            </Typography>
-            <Typography variant="h5" sx={{ mb: 3 }}>
-                <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
-                    Insights
-                </Box>
-            </Typography></DialogTitle>
+          <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
+            Suggestion
+          </Box>
+        </Typography>
+        </DialogTitle>
         <DialogContent>
+          <Typography variant="h5" sx={{ mb: 3 }}>
+            <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
+              Insights
+            </Box>
+          </Typography>
           <Box>
-          <DialogContentText sx={{ mb: 1 }}>
-          Explanation
-          </DialogContentText>
+            <DialogContentText sx={{ mb: 1 }}>
+              Explanation
+            </DialogContentText>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 1 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Revenue:
-          </DialogContentText>
-          <Typography>{resultData.revenue} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Revenue:
+            </DialogContentText>
+            <Typography>{Math.round(resultData.revenue)} VND</Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 1 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Break even point (in unit):
-          </DialogContentText>
-          <Typography>{resultData.breakEvenUnit} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Break even point (in unit):
+            </DialogContentText>
+            <Typography>{Math.round(resultData.breakEvenUnit)} VND</Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 1 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Break even point (in revenue):
-          </DialogContentText>
-          <Typography>{resultData.breakEvenRevenue} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Break even point (in revenue):
+            </DialogContentText>
+            <Typography>{Math.round(resultData.breakEvenRevenue)} VND</Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 1 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Profit:
-          </DialogContentText>
-          <Typography>{resultData.profit} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Profit:
+            </DialogContentText>
+            <Typography>{Math.round(resultData.profit)} VND</Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 1 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Average Total Cost:
-          </DialogContentText>
-          <Typography>{resultData.atc} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 1 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Average Total Cost:
+            </DialogContentText>
+            <Typography>{Math.round(resultData.atc)} VND</Typography>
           </Box>
-          <Box sx={{ display: 'flex', justifyContent:"space-between", mb: 3 }}>
-          <DialogContentText sx={{ mr: 15 }}>
-          Average Variable Cost:
-          </DialogContentText>
-          <Typography>{resultData.avc} VND</Typography>
+          <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 3 }}>
+            <DialogContentText sx={{ mr: 15 }}>
+              Average Variable Cost:
+            </DialogContentText>
+            <Typography>{Math.round(resultData.avc)} VND</Typography>
           </Box>
           <Typography variant="h5" sx={{ mb: 3 }}>
-                <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
-                    Insights
-                </Box>
-            </Typography>
+            <Box sx={{ textAlign: 'center', fontWeight: 'bold', m: 1 }}>
+              Conclusion
+            </Box>
+          </Typography>
+          <Chart chartType='PieChart' width="auto" height="auto" data={[["Category", "Amount"], ["Profit", resultData.profit], ["Revenue", resultData.revenue - resultData.profit]]} options={{
+            title: "% profit to revenue",
+            pieHole: 0.8,
+            is3D: false
+          }} />
+          <Chart chartType='PieChart' width="auto" height="auto" data={[["Category", "Amount"], ["Cost", resultData.cost], ["Revenue", resultData.revenue - resultData.cost]]} options={{
+            title: "% cost to revenue",
+            pieHole: 0.8,
+            is3D: false
+          }} />
+          <Chart chartType='PieChart' width="auto" height="auto" data={[["Category", "Amount"], ["Variable Cost", resultData.variableCost], ["Revenue", resultData.revenue - resultData.variableCost]]} options={{
+            title: "% variable cost to revenue",
+            pieHole: 0.8,
+            is3D: false
+          }} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
