@@ -16,10 +16,18 @@ export default function InputStatisticsFormDialog() {
     fixedCost: 0,
     variableCost: 0,
     price: 0,
-    unitSold: 0
+    unitSold: 0,
+    month: 0,
+    year: 0,
   })
 
   const handleChangeTimePeriod = (event) => {
+    if (event.target.value == "By year") {
+      setData(currentValue => ({
+        ...currentValue,
+        month: 0,
+      }))
+    }
     settimePeriod(event.target.value);
   };
 
@@ -56,6 +64,20 @@ export default function InputStatisticsFormDialog() {
     setData(currentValue => ({
       ...currentValue,
       unitSold: Number(e.target.value),
+    }))
+  }
+
+  const changeMonth = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      month: Number(e.target.value),
+    }))
+  }
+
+  const changeYear = e => {
+    setData(currentValue => ({
+      ...currentValue,
+      year: Number(e.target.value),
     }))
   }
 
@@ -102,30 +124,28 @@ export default function InputStatisticsFormDialog() {
             </DialogTitle>
         <DialogContent>
           <Box sx={{ display: 'flex', pb: 4 }}>
-            {timePeriod === "By month" && (<TextField id="month" label="Month" variant="standard" sx={{ width: '20%', pr: 5 }} />)}
-          <TextField id="year" label="Year" variant="standard" sx={{ width: '14%' }} />
+            {timePeriod === "By month" && (<TextField id="month" label="Month" variant="standard" sx={{ width: '20%', pr: 5 }} onChange={changeMonth} />)}
+          <TextField id="year" label="Year" variant="standard" sx={{ width: '14%' }} onChange={changeYear} />
           </Box>
           <DialogContentText>
             <Box sx={{ pb: 3 }}>
             <Typography>
                 <Box sx={{fontWeight: 'bold'}}>
-                    Input data
+                    What is revenue?
                 </Box>
             </Typography>
             <Typography>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            The amount of money that individuals/businesses receive after selling their products. 
             </Typography>
             </Box>
             <Box sx={{ pb: 3 }}>
             <Typography>
                 <Box sx={{ fontWeight: 'bold' }}>
-                    Input data
+                    What is profit?
                 </Box>
             </Typography>
             <Typography>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            The amount of money after subtracting the costs of producing.
             </Typography>
             </Box>
           </DialogContentText>
@@ -133,16 +153,14 @@ export default function InputStatisticsFormDialog() {
             <Box>
             <Typography>
                 <Box sx={{fontWeight: 'bold'}}>
-                    Input data
+                    Fixed cost
                 </Box>
             </Typography>
             <Typography>
-            Explanation: To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Explanation: The cost which does not vary with production
             </Typography>
             <Typography>
-            Example: To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Example: The house rent is considered a fixed cost as it will not be affected no matter how many products businesses can make
             </Typography>
             </Box>
           </DialogContentText>
@@ -160,16 +178,14 @@ export default function InputStatisticsFormDialog() {
             <Box>
             <Typography>
                 <Box sx={{fontWeight: 'bold'}}>
-                    Input data
+                    Variable cost
                 </Box>
             </Typography>
             <Typography>
-            Explanation: To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Explanation: The cost which varies with production
             </Typography>
             <Typography>
-            Example: To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Example: Fertilizer or water can be considered as variable cost as the more products businesses produce, the more money they have to spend on these.
             </Typography>
             </Box>
           </DialogContentText>
@@ -216,7 +232,7 @@ export default function InputStatisticsFormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button><SuggestionDialog inputData={data} /></Button>
+          <SuggestionDialog inputData={data} />
         </DialogActions>
       </Dialog>
     </React.Fragment>
