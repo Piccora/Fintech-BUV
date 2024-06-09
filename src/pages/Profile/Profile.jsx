@@ -13,7 +13,7 @@ export default function Profile() {
                 </Box>
             </Typography>
             <Box sx={{ display: "flex", justifyContent: 'flex-start' }} >
-                <Box align="left" sx={{ px: 10, pr: 50 }}>
+                <Box align="left" sx={{ px: 10, pr: 50, textAlign: 10}}>
                     <Typography variant="h5">Username: </Typography>
                     <Typography variant="h5">Specialized field:      </Typography>
                     <Typography variant="h5">Total revenue:</Typography>
