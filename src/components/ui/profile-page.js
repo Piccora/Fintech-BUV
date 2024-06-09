@@ -1,3 +1,4 @@
+import './profile-page.css'
 export function profilepage () {
 return (
 <html lang="en">

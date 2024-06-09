@@ -13,6 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { signIn } from '../../FirebaseAuthentication';
 import "./SignIn.css"
+import { green } from '@mui/material/colors';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -79,7 +80,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: green }}
             >
               Sign In
             </Button>

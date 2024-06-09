@@ -5,7 +5,7 @@ import SignUp from './pages/SignUp/SignUp'
 import SignIn from './pages/SignIn/SignIn'
 import Profile from './pages/Profile/Profile'
 import NavBar from './components/ui/NavBar/NavBar'
-import Footer from './components/ui/Footer/Footer'
+// import Footer from './components/ui/Footer/Footer'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase'
@@ -39,7 +39,7 @@ function App() {
             }
           />
         </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
