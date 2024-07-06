@@ -1,0 +1,77 @@
+{
+    "amount-month": [
+        {
+            "month": 8,
+            "total-fixed-costs": 2000000,
+            "average-variable-costs": 6000,
+            "units-sold": 1200, 
+            "selling-price-per-unit": 14000,
+            "total-revenue": 16800000, 
+            "break-even-point-units": 250,
+            "break-even-point-revenue": 3500000,
+            "total-variable-costs": 7200000,
+            "total-costs": 9200000,
+            "profit": 7600000,
+            "profit-margin": "45.24%",
+            "cost-to-revenue-ratio": "54.76%",
+            "atc": "7,667",
+            "market-position-sustainability": "profit maximizing"
+        },
+
+        {
+            "month": 9,
+            "total-fixed-costs": 2000000,
+            "average-variable-costs": 6000,
+            "units-sold": 1300,
+            "selling-price-per-unit": 15000,
+            "total-revenue": 19500000,
+            "break-even-point-units": 222,
+            "break-even-point-revenue": 3333333,
+            "total-variable-costs": 17500000,
+            "total-costs": 19500000,
+            "profit": "null",
+            "profit-margin": "0.00%",
+            "cost-to-revenue-ratio": "100.00%",
+            "atc": "15,000",
+            "market-position-sustainability": "Break-Even",
+        },
+
+        {
+            "month": 11,
+            "total-fixed-costs": 2000000,
+            "average-variable-costs": 6000,
+            "units-sold": 1500,
+            "selling-price-per-unit": 13500,
+            "total-revenue": 20250000,
+            "break-even-point-units": 267,
+            "break-even-point-revenue": 3600000,
+            "total-variable-costs": 9000000,
+            "total-costs": 11000000, 
+            "profit": 9250000,
+            "profit-margin": "45,68%",
+            "cost-to-revenue-ratio": "54,32%",
+            "atc": "7,333",
+            "market-position-sustainability": "Profit Maximizing",
+        },
+
+        {
+            "month": 12,
+            "total-fixed-costs": 2000000,
+            "average-variable-costs": 14000,
+            "units-sold": 1000,
+            "selling-price-per-unit": 15000,
+            "total-revenue": 15000000,
+            "break-even-point-units": 2000,
+            "break-even-point-revenue": 30000000,
+            "total-variable-costs": 14000000,
+            "total-costs": 16000000,
+            "profit": 1000000,
+            "profit-margin": "-6.67%",
+            "cost-to-revenue-ratio": "106.67%",
+            "atc": 16000,
+            "market-position-sustainability": "Loss Minimizing",
+        }
+
+    ]
+
+}
